@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  code-testcase-generator:
+    build: .
+    container_name: code-testcase-generator
+    env_file:
+      - .env
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - CODE_EXECUTOR_ADDR=code-executor:50051
+    ports:
+      - "50053:50053"
+    networks:
+      - judging-network
+
+networks:
+  judging-network:
+    external: true

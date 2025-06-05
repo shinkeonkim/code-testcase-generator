@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package testcase_generator;
+
+service TestcaseGenerator {
+    rpc GenerateTestcases (GenerateTestcaseRequest) returns (GenerateTestcaseResponse);
+}
+
+message GenerateTestcaseRequest {
+    int32 boj_id = 1;
+    string description = 2;
+    string input_description = 3;
+    string output_description = 4;
+    string validation_code = 5;
+    string solution_code = 6;
+    int32 num_testcases = 7;
+    repeated Testcase example_testcases = 8;
+}
+
+message Testcase {
+    string input = 1;
+    string output = 2;
+}
+
+message GenerateTestcaseResponse {
+    int32 boj_id = 1;
+    string validation_code = 2;
+    string solution_code = 3;
+    repeated Testcase testcases = 4;
+} 
